@@ -1,1 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
+namespace ZOO
+{
+    class Item
+    {
+        public string Name { get; set; }
+        public float Age { get; set; }
+        public float Mass { get; set; }
+        public Item(string name, float age, float mass)
+        {
+            Name = name;
+            Age = age;
+            Mass = mass;
+        }
+        public void Print()
+        {
+            Console.WriteLine(Name);
+            Console.WriteLine("\tAge: {0}", Age);
+            Console.WriteLine("\tMass: {0}", Mass);
+        }
+    }
+    class ZOO
+    {
+        private List<Item> items;
+        public ZOO()
+        {
+            items = new List<Item>();
+        }
+        public void Add()
+        {
+            Console.WriteLine("NEW ANIMAL");
+            Console.Write("Name: ");
+            string name = Console.ReadLine();
+            Console.Write("Age: ");
+            float age = float.Parse(Console.ReadLine());
+            Console.Write("Mass: ");
+            float mass = float.Parse(Console.ReadLine());
+
+            Item item = new Item(name, age, mass);
+            items.Add(item);
+        }
+        public void PrintAnimals()
+        {
+            Console.WriteLine("PRINTING ANIMALS:");
+            foreach (Item item in items)
+            {
+                item.Print();
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ZOO zoo = new ZOO();
+            byte choice = 0;
+            do
+            {
+                Console.WriteLine("MAIN MENU");
+                Console.WriteLine("\t1. Add animal");
+                Console.WriteLine("\t2. Print animals");
+                Console.WriteLine("\t3. End");
+                choice = Byte.Parse(Console.ReadLine());
+                if (choice == 1) { zoo.Add(); }
+                else if (choice == 2) { zoo.PrintAnimals(); }
+            }
+            while (choice != 3);
+        }
+    }
+}
